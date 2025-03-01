@@ -11,9 +11,8 @@ export function startChat(socket, io) {
 
       if (
         !company ||
-        !company.HRs.includes(
-          socket.user._id || !company.createdBy.toString() === socket.user._id
-        )
+        !company.HRs.includes(socket.user._id ) || 
+        !company.createdBy.toString() === socket.user._id
       ) {
         socket.emit("error", { message: "Not authorized to start chat" });
         return;
