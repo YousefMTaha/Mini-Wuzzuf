@@ -21,7 +21,6 @@ export const adminGraphqlSchema = new GraphQLSchema({
           const companies = await companyModel
             .find()
             .select("companyName industry companyEmail approvedByAdmin");
-          console.log(companies);
 
           return { users, companies };
         },

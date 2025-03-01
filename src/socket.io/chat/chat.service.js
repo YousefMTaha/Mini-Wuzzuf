@@ -9,7 +9,12 @@ export function startChat(socket, io) {
 
       const company = await companyModel.findById(companyId);
 
-      if (!company || !company.HRs.includes(socket.user._id)) {
+      if (
+        !company ||
+        !company.HRs.includes(
+          socket.user._id || !company.createdBy.toString() === socket.user._id
+        )
+      ) {
         socket.emit("error", { message: "Not authorized to start chat" });
         return;
       }
